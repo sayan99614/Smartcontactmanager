@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Normal/base1::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>UserDashbord</title>
+</head>
+<body>
+	<section id="team" class="pb-5">
+    	<div class="container" th:if="${contact}">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-6">
+                        <div class="about-text go-to">
+                            <h3 class="dark-color">Description</h3>
+                            <p class="text-uppercase" th:text="${contact.description}"></p>
+                            <div class="row about-list">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label><i class="fas fa-user-tie"></i>&nbsp;Name</label>
+                                        <p th:text="${contact.name}"></p>
+                                    </div>
+                                    <div class="media">
+                                        <label><i class="fas fa-envelope"></i>&nbsp;Email</label>
+                                        <p th:text="${contact.email}"></p>
+                                    </div>
+                                    <div class="media">
+                                        <label><i class="fas fa-phone-square-alt"></i>&nbsp;Phone</label>
+                                        <p th:text="'+91'+${contact.phone}"></p>
+                                    </div>
+                                    <div class="media">
+                                        <label><i class="fab fa-instagram"></i>&nbsp;Insta</label>
+                                        <p th:text="${contact.instaId}"></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-avatar">
+                            <img th:src="@{'/img/'+${contact.image_url}}" title="" alt="">
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="container" th:unless="${contact}">
+                <div class="alert alert-danger text-center" role="alert">
+  				WARNING!! YOU CAN'T SEE ANY OTHERS CONTACT
+				</div>
+                </div>
+	</section>
+</body>
+</html>

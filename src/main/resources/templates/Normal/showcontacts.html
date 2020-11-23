@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="Normal/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>UserDashbord</title>
+</head>
+<body>
+	<section>
+		<div class="card mr-4">
+			<div class="card-body ">
+				<h1 style="font-family: cursive;" class="text-center">YOUR
+					CONTACTS</h1>
+				<div class="container-fluid mt-2">
+					<div class="row">
+						<div class="col-sm-10 offset-sm-1">
+							<div class="container-fluid">
+							<table class="table table-striped">
+									  <thead>
+									    <tr>
+									      <th scope="col">#</th>
+									      <th scope="col">NAME</th>
+									      <th scope="col">WORK</th>
+									      <th scope="col">PHONE</th>
+									      <th scope="col">EMAIL</th>
+									      <th scope="col">ACTION</th>
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <tr th:each="c:${contact}">
+									      <th scope="row" th:text="${c.cId}"></th>
+									      <td><img th:src="@{'/img/'+${c.image_url}}" class="circular--portrait" alt="" />&nbsp;<span th:text="${c.name}"></span></td>
+									      <td><span th:text="${c.work}" class="mt-1"></span></td>
+									      <td th:text="${c.phone}"></td>
+									      <td th:text="${c.email}"></td>
+									      <td><a class="btn btn-success" th:href="@{'/user/edit/'+${c.cId}}">EDIT</a>
+									      &nbsp;&nbsp;<a class="btn btn-danger" th:onclick="|deletebyid(${c.cId})|">DELETE</a>
+									      </td>
+									    </tr>
+									  </tbody>
+									</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		function deletebyid(cid){
+			swal({
+				  title: "Are you sure?",
+				  text: "Once deleted, you will not be able to recover your contact",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				     window.location="/user/delete/"+cid;
+				    }
+				  else {
+				    swal("Your contact is not deleted");
+				  }
+				});
+		}
+		
+		</script>
+	</section>
+</body>
+</html>

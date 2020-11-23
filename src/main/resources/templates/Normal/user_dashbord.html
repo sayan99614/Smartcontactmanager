@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Normal/base1::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>UserDashbord</title>
+</head>
+<body>
+	<section id="team" class="pb-5">
+	<div class="container">
+	<h5 class="section-title h1">YOUR CONTACTS</h5>
+	</div>
+    <div class="container">
+        <div class="row">
+            <!-- Team member -->
+            <div class="mr-3" th:each="u:${user.contact}">
+                <div class="image-flip" >
+                    <div class="mainflip flip-0">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" th:src="@{'/img/'+${u.image_url}}" alt="card image"></p>
+                                    <h4 class="card-title" th:text="${u.name}"></h4>
+                                    <p class="card-text" th:text="${u.email}"></p>
+                                    <div class="card-text" th:text="${u.phone}"></div>
+                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title" th:text="${u.name}"></h4>
+                                    <div class="card-text"><span th:text="${u.description}"></span></div>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" th:href="@{'https://www.instagram.com/'+${u.instaId}+'/'}">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-skype"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="text-dark"><a th:href="@{'/user/singlecontact/'+${u.cId}}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    </div>
+</section>
+</body>
+</html>
